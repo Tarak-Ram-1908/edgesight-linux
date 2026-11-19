@@ -1,0 +1,2 @@
+edgesight: power-on->ready median 5.05 s, kernel->ready median 2.92 s, mem 195.504 MiB
+ubuntu: power-on->ready median 18.7 s, kernel->ready median 14.86 s, mem 399.5 MiB

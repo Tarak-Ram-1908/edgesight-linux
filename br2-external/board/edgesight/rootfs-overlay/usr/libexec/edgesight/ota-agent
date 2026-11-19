@@ -1,0 +1,39 @@
+#!/bin/sh
+# Minimal pull-based OTA agent.
+#   GET $OTA_URL/latest  ->  "<version> <bundle-file>"
+#   GET $OTA_URL/<bundle-file>  ->  RAUC bundle, installed into the INACTIVE slot.
+# RAUC verifies the CMS signature against /etc/rauc/ca.cert.pem and the dm-verity
+# hash of the payload before a single byte is written to the slot.
+. /etc/edgesight/edgesight.conf
+log() { echo "edgesight-ota: $*" > /dev/kmsg; echo "edgesight-ota: $*" >&2; }
+[ -n "$OTA_URL" ] || exec sleep 2147483647
+mkdir -p /data/ota
+sleep 5
+while :; do
+    if wget -q -T 5 -O /tmp/ota.latest "$OTA_URL/latest" 2>/dev/null; then
+        read -r NEW FILE < /tmp/ota.latest
+        CUR=$(cat /etc/edgesight-version)
+        if [ -n "$NEW" ] && [ "$NEW" != "$CUR" ] && ! grep -qx "$NEW" /data/ota/rejected 2>/dev/null; then
+            log "update available: $CUR -> $NEW ($FILE)"
+            rm -f /data/ota/update.raucb
+            if wget -q -T 60 -O /data/ota/update.raucb "$OTA_URL/$FILE"; then
+                if rauc install /data/ota/update.raucb > /tmp/ota.log 2>&1; then
+                    echo "$NEW" > /data/ota/pending
+                    rm -f /data/ota/update.raucb
+                    sync
+                    log "installed $NEW into the inactive slot - rebooting into it"
+                    reboot
+                    exit 0
+                else
+                    log "REJECTED $NEW: $(grep -v -e 'rauc-Message' -e '^$' /tmp/ota.log | tail -n1)"
+                    sed 's/^/edgesight-ota:   | /' /tmp/ota.log >&2
+                    echo "$NEW" >> /data/ota/rejected
+                fi
+            else
+                log "download of $FILE failed"
+            fi
+            rm -f /data/ota/update.raucb
+        fi
+    fi
+    sleep "${OTA_INTERVAL:-30}"
+done

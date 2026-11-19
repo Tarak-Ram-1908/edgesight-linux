@@ -1,0 +1,37 @@
+== boot run 1/5 (prod) ==
+  launch->ready 5.84s   (firmware+GRUB+kernel decompress 4.36s, kernel start->app ready 1.48s)
+  PASS  /healthz returns 200
+  PASS  dashboard served
+  PASS  metrics report healthy
+  PASS  MJPEG stream delivers a frame
+  PASS  MQTT detection received
+  PASS  RAUC confirmed the boot slot
+  PASS  no SSH service in prod
+  PASS  no login prompt on console
+{
+  "fps": 10.000,
+  "infer_p50": 46.795,
+  "infer_p99": 186.526,
+  "rss_mib": 143.387,
+  "sys_mem_used_mib": 196.262,
+  "sys_mem_total_mib": 985.641,
+  "sandbox": "strict",
+  "engine": "onnxruntime-1.32.0",
+  "slot": "A"
+}
+== boot run 2/5 (prod) ==
+  launch->ready 5.34s   (firmware+GRUB+kernel decompress 3.72s, kernel start->app ready 1.62s)
+== boot run 3/5 (prod) ==
+  launch->ready 3.71s   (firmware+GRUB+kernel decompress 2.25s, kernel start->app ready 1.46s)
+== boot run 4/5 (prod) ==
+  launch->ready 5.03s   (firmware+GRUB+kernel decompress 3.65s, kernel start->app ready 1.38s)
+== boot run 5/5 (prod) ==
+  launch->ready 5.54s   (firmware+GRUB+kernel decompress 4.04s, kernel start->app ready 1.50s)
+{
+  "runs": 5,
+  "launch_to_ready_mean": 5.0917989515999995,
+  "kernel_to_ready_mean": 1.488,
+  "firmware_grub_mean": 3.6037989515999995,
+  "mem_used_mean": 196.7266
+}
+test-boot: all checks passed

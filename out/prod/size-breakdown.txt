@@ -1,0 +1,30 @@
+component                                         bytes  share
+models (ONNX fp32+int8, TFLite uint8)          42920328  35.5%
+sample frames                                   1354222   1.1%
+libonnxruntime                                 34824307  28.8%
+TFLite + XNNPACK + abseil + deps               10584914   8.7%
+glibc + libstdc++ + libgcc                      5732153   4.7%
+RAUC + glib + OpenSSL (update stack)           12201205  10.1%
+GRUB tools (grub-editenv etc.)                   196576   0.2%
+nftables + libmnl/nftnl/gmp/jansson             1242122   1.0%
+mosquitto broker + lib                           432044   0.4%
+edgesightd + libjpeg-turbo + libseccomp         1950968   1.6%
+BusyBox                                          768600   0.6%
+TOTAL (uncompressed)                          120988439 100.0%
+
+largest 15 files:
+    34824264  usr/lib/libonnxruntime.so.1.32.0
+    29204743  usr/share/edgesight/models/ssd_mobilenet_v1_fp32.onnx
+     9532273  usr/share/edgesight/models/ssd_mobilenet_v1_int8.onnx
+     6237360  usr/lib/libcrypto.so.3
+     4183312  usr/share/edgesight/models/ssd_mobilenet_v1_uint8.tflite
+     3936032  usr/lib/libtensorflow-lite.so
+     2530032  usr/lib/libstdc++.so.6.0.33
+     2242984  usr/lib/libflatbuffers.so.25.2.10
+     2034224  usr/lib/libgio-2.0.so.0.8600.5
+     1868024  lib/libc.so.6
+     1672040  usr/lib/libXNNPACK.so
+     1404080  usr/lib/libglib-2.0.so.0.8600.5
+     1068768  usr/lib/libssl.so.3
+     1017856  lib/libmvec.so.1
+      975680  usr/lib/libnftables.so.1.1.0

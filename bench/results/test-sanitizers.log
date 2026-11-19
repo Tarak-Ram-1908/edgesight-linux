@@ -1,0 +1,44 @@
+building edgesightd with -fsanitize=address,undefined
+    total 9224
+    drwxr-xr-x    2 root     root           100 Nov 19 09:31 .
+    drwxrwxrwt    3 root     root            80 Nov 19 09:31 ..
+    -rwxr-xr-x    1 root     root       6858928 Nov 19 09:31 edgesightd
+    -rwxr-xr-x    1 root     root       1995648 Nov 19 09:31 libasan.so.8
+    -rwxr-xr-x    1 root     root        581776 Nov 19 09:31 libubsan.so.1
+running sanitized daemon in the VM (camera + HTTP + MQTT, sample loop flat out)
+== camera ingest ==
+  PASS  valid MJPEG stream (baseline)                    4.7s  healthy=True frames+84 dropped=0 decode_err=0
+  PASS  1 MiB of random bytes                            3.3s  healthy=True frames+101 dropped=0 decode_err=1
+  PASS  200 bit-flipped JPEGs                            4.1s  healthy=True frames+101 dropped=0 decode_err=6
+  PASS  200 truncated JPEGs (+EOI)                       4.1s  healthy=True frames+119 dropped=0 decode_err=6
+  PASS  JPEG claiming 60000x60000 px                     3.9s  healthy=True frames+87 dropped=0 decode_err=26
+  PASS  JPEG claiming 4096x4096 px (allowed size)        3.9s  healthy=True frames+92 dropped=0 decode_err=26
+  PASS  8 MiB frame without EOI (runaway)                3.3s  healthy=True frames+112 dropped=1 decode_err=26
+  PASS  empty frames (SOI EOI) x1000                     2.9s  healthy=True frames+71 dropped=1 decode_err=27
+  PASS  silent client for 6 s (must not starve)          8.6s  healthy=True frames+274 dropped=1 decode_err=27
+  PASS  trickle 1 byte / 0.5 s for 6 s                   7.0s  healthy=True frames+300 dropped=1 decode_err=27
+  PASS  valid stream again (recovery)                    4.8s  healthy=True frames+145 dropped=1 decode_err=27
+== HTTP server ==
+  PASS  random garbage x200                              3.5s  healthy=True frames+109 dropped=1 decode_err=27
+  PASS  16 KiB request line                              2.6s  healthy=True frames+79 dropped=1 decode_err=27
+  PASS  non-GET methods / path tricks                    2.7s  healthy=True frames+83 dropped=1 decode_err=27
+  PASS  flood: 300 concurrent /metrics                   7.8s  healthy=True frames+230 dropped=1 decode_err=27
+  PASS  slowloris: 40 half-open requests, 8 s           11.2s  healthy=True frames+398 dropped=1 decode_err=27
+  PASS  10 MJPEG viewers for 6 s                         8.6s  healthy=True frames+194 dropped=1 decode_err=27
+fuzz: 0 phase(s) failed
+  bench under ASan: tflite+xnnpack, 60 frames OK
+  bench under ASan: tflite, 60 frames OK
+  bench under ASan: onnxruntime-1.32.0, 60 frames OK
+edgesightd
+libasan.so.8
+libubsan.so.1
+stderr.log
+[edgesightd    57.525] source: camera disconnected, falling back to samples
+[edgesightd    96.308] shutting down after 2599 frames
+[edgesightd    96.310] mqtt: disconnected, will retry
+  frames processed under ASan/UBSan: 2592
+  PASS  fuzz phases survived under ASan/UBSan
+  PASS  no AddressSanitizer report
+  PASS  no LeakSanitizer report
+  PASS  no UndefinedBehaviorSanitizer report
+test-sanitizers: all checks passed

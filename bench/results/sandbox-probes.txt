@@ -1,0 +1,12 @@
+[edgesightd     4.562] EdgeSight 1.0.0 starting (slot A, runtime ort, 2 threads, sandbox strict)
+[edgesightd     4.562] sandbox: running as edgesight (uid=101 gid=102), all capabilities dropped
+[edgesightd     4.562] sandbox: landlock ABI v6 active - filesystem read-only, exec denied
+[edgesightd     5.271] sandbox: seccomp-bpf strict, 113 syscalls allowed (default: kill process)
+  sandbox probe write a file under /data     BLOCKED (permission denied - privileges/landlock)
+  sandbox probe modify /etc/passwd           BLOCKED (permission denied - privileges/landlock)
+  sandbox probe execve /bin/sh               BLOCKED (killed by signal 31 - seccomp)
+  sandbox probe open raw packet socket       BLOCKED (killed by signal 31 - seccomp)
+  sandbox probe ptrace a process             BLOCKED (killed by signal 31 - seccomp)
+  sandbox probe mount a filesystem           BLOCKED (killed by signal 31 - seccomp)
+  sandbox probe regain root (setuid 0)       BLOCKED (killed by signal 31 - seccomp)
+  sandbox self-test: 7/7 forbidden operations blocked

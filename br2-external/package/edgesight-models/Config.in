@@ -1,0 +1,12 @@
+config BR2_PACKAGE_EDGESIGHT_MODELS
+	bool "edgesight-models"
+	help
+	  Pre-trained COCO object-detection models (hash-pinned) and a
+	  small set of sample frames used for the boot-time self-test
+	  and offline demo:
+	   - SSD-MobileNet-v1 ONNX FP32 and INT8 (ONNX Model Zoo, Apache-2.0)
+	   - SSD-MobileNet-v1 TFLite uint8 quantised (TensorFlow, Apache-2.0)
+	   - COCO val2017 sample images (CC-BY 4.0)
+
+	  Deliberately NOT YOLOv5/v8 (AGPL-3.0) to keep the image free of
+	  copyleft obligations on the application.

@@ -1,0 +1,18 @@
+EdgeSight reproducibility check - 2026-11-19T10:05:49Z
+build B: complete rebuild from scratch at the same path (1530s, shared dl/ + ccache only)
+
+bzImage          af6a44f51f184087f77eb8d5668e165a07d507bf2c151e15d4d37248f606119a  IDENTICAL
+rootfs.squashfs  4428296f57b084408fd2879958bb8e6acbd4bc5842381359ed45ff7c8879a4c8  IDENTICAL
+rootfs.verity    2cbf437214e143d118db034fa94e18bc8139e0e7ef5c9f7a3ec11316f251d164  IDENTICAL
+esp.vfat         b8220da4940167a20e9d43a0998a2ba94eec0b275d9185b5cb82633d6166de95  IDENTICAL
+boot.vfat        3e825b74aae9cb7887d440db6a7e88e777422840561959425c0fe0a1386cdc78  IDENTICAL
+data.ext4        e599c763b361b560db495773f5c74a12362c4d49ecd41f44744121d71584396e  IDENTICAL
+disk.img         b39f9322c7c39f91d2320216d0e3bb3e8848c4386cd8309ad7c10b1b3cad074d  IDENTICAL
+
+signed bundle payload (manifest image digests + bundle verity root hash):
+  A: RAUC_MF_VERSION='1.0.0'
+  A: RAUC_IMAGE_DIGEST_0='2cbf437214e143d118db034fa94e18bc8139e0e7ef5c9f7a3ec11316f251d164'
+  A: RAUC_IMAGE_DIGEST_1='3e825b74aae9cb7887d440db6a7e88e777422840561959425c0fe0a1386cdc78'
+  -> IDENTICAL payload; .raucb files differ only in the CMS signing time
+
+RESULT: 7/7 image artefacts bit-identical

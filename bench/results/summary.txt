@@ -1,0 +1,11 @@
+EdgeSight validation 2026-11-19T09:17:55Z
+build-prod  rc=0  pass=0   fail=0     549s
+build-dev   rc=0  pass=0   fail=0      96s
+kconfig     rc=0  pass=0   fail=0      -1s
+boot        rc=0  pass=8   fail=0      43s
+tamper      rc=0  pass=5   fail=0      14s
+security    rc=0  pass=19  fail=0      15s
+robustness  rc=0  pass=21  fail=0      99s
+sanitizers  rc=0  pass=21  fail=0     126s
+bundles     rc=0  pass=0   fail=0     186s
+ota         rc=0  pass=15  fail=0     155s

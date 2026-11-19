@@ -1,0 +1,1 @@
+edgesight -1 edgesight -1 * - /bin/false - EdgeSight inference service (unprivileged)

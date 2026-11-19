@@ -1,0 +1,148 @@
+== boot 1.0.0 ==
+  PASS  1.0.0 ready in slot A
+== good update 1.1.0 ==
+published edgesight-1.1.0.raucb as version 1.1.0
+  PASS  agent installs 1.1.0
+  PASS  reboots into slot B
+  PASS  1.1.0 confirmed by health check
+  PASS  running version is 1.1.0 / INT8
+== tampered bundle ==
+published edgesight-1.1.1-tampered.raucb as version 1.1.1-tampered
+edgesight-ota: REJECTED 1.1.1-tampered: Installing `/data/ota/update.raucb` failed
+  PASS  tampered bundle rejected
+  PASS    ...by bundle dm-verity (payload hash)
+  PASS    ...while 1.1.0 keeps running
+== bundle signed by an untrusted key ==
+published edgesight-6.6.6-rogue.raucb as version 6.6.6
+edgesight-ota: REJECTED 6.6.6: Installing `/data/ota/update.raucb` failed
+  PASS  rogue-signed bundle rejected
+  PASS    ...by signature check (signer not in keyring)
+== broken update 1.2.0 ==
+published edgesight-1.2.0.raucb as version 1.2.0
+  PASS  agent installs 1.2.0 into A
+edgesight-health: slot A v1.2.0 FAILED health check after 45s -> mark-bad, reboot to fallback
+  PASS  1.2.0 fails its health check
+edgesight-health: update 1.2.0 did not survive its first boot - rolled back to 1.1.0, blacklisted
+  PASS  automatic rollback to slot B
+  PASS  1.1.0 serving again
+  PASS  1.2.0 is not retried
+    | [H[J[1;1HEdgeSight: booting slot A (ORDER=A B A_OK=1 A_TRY=1 B_OK=1 B_TRY=0)
+    | edgesight-health: slot A v1.0.0 healthy, marked good (uptime 2.59s)
+    | edgesight-ota: update available: 1.0.0 -> 1.1.0 (edgesight-1.1.0.raucb)
+    | edgesight-ota: installed 1.1.0 into the inactive slot - rebooting into it
+    | [H[J[1;1HEdgeSight: booting slot B (ORDER=B A A_OK=1 A_TRY=0 B_OK=1 B_TRY=1)
+    | edgesight-health: slot B v1.1.0 healthy, marked good (uptime 1.59s)
+    | edgesight-health: update 1.1.0 confirmed
+    | edgesight-ota: update available: 1.1.0 -> 1.1.1-tampered (edgesight-1.1.1-tampered.raucb)
+    | edgesight-ota: REJECTED 1.1.1-tampered: Installing `/data/ota/update.raucb` failed
+    | edgesight-ota:   | rauc-Message: 09:37:01.802: Using central status file /data/rauc/central.raucs
+    | edgesight-ota:   | rauc-Message: 09:37:01.803: Using system config file /etc/rauc/system.conf
+    | edgesight-ota:   | rauc-Message: 09:37:01.803: Active slot bootname: 'B'
+    | edgesight-ota:   | started
+    | edgesight-ota:   |   0% Installing
+    | edgesight-ota:   | rauc-event-Message: 09:37:01.803: Installation d7ff5963 started
+    | edgesight-ota:   |   0% Determining slot states
+    | edgesight-ota:   |  10% Determining slot states done.
+    | edgesight-ota:   |  10% Checking bundle
+    | edgesight-ota:   | rauc-Message: 09:37:01.804: Reading bundle: /data/ota/update.raucb
+    | edgesight-ota:   | Checking and mounting bundle...
+    | edgesight-ota:   | rauc-Message: 09:37:01.811: Verifying bundle signature... 
+    | edgesight-ota:   |  10% Verifying signature
+    | edgesight-ota:   | rauc-Message: 09:37:01.813: Verified inline signature by 'O = EdgeSight, OU = Release Engineering, CN = EdgeSight Bundle Signing 2026'
+    | edgesight-ota:   |  20% Verifying signature done.
+    | edgesight-ota:   |  20% Checking bundle done.
+    | edgesight-ota:   | rauc-Message: 09:37:01.813: Mounting bundle '/data/ota/update.raucb' to '/run/rauc/bundle'
+    | edgesight-ota:   | rauc-Message: 09:37:01.839: Configured loop device '/dev/loop0' for 66125824 bytes
+    | edgesight-ota:   |  20% Checking manifest contents
+    | edgesight-ota:   |  30% Checking manifest contents done.
+    | edgesight-ota:   | rauc-Message: 09:37:01.841: Configured dm-verity device '/dev/dm-1'
+    | edgesight-ota:   |  30% Determining target install group
+    | edgesight-ota:   |  40% Determining target install group done.
+    | edgesight-ota:   | rauc-Message: 09:37:01.841: Checking image type for slot type: raw
+    | edgesight-ota:   | rauc-Message: 09:37:01.842: Found handler for image type 'raw' and slot type 'raw'
+    | edgesight-ota:   | rauc-Message: 09:37:01.842: Checking image type for slot type: vfat
+    | edgesight-ota:   | rauc-Message: 09:37:01.842: Found handler for image type 'vfat' and slot type 'vfat'
+    | edgesight-ota:   | rauc-Message: 09:37:01.842: Marking target slot rootfs.0 as non-bootable (bad)...
+    | edgesight-ota:   | rauc-event-Message: 09:37:01.960: Marked slot rootfs.0 as bad
+    | edgesight-ota:   |  40% Updating slots
+    | edgesight-ota:   |  40% Checking slot rootfs.0 (A)
+    | edgesight-ota:   | Updating slots...
+    | edgesight-ota:   | Checking slot rootfs.0
+    | edgesight-ota:   |  43% Checking slot rootfs.0 (A) done.
+    | edgesight-ota:   | rauc-event-Message: 09:37:01.973: Updating slot rootfs.0
+    | edgesight-ota:   | rauc-Message: 09:37:01.973: Updating /dev/vda4 with /run/rauc/bundle/rootfs.img
+    | edgesight-ota:   | Updating slot rootfs.0
+    | edgesight-ota:   |  43% Copying image to rootfs.0
+    | edgesight-ota:   | rauc-Message: 09:37:01.973: opening slot device /dev/vda4
+    | edgesight-ota:   | rauc-Message: 09:37:01.973: writing data to device /dev/vda4
+    | edgesight-ota:   |  43% Copying image to rootfs.0
+    | edgesight-ota:   |  43% Copying image to rootfs.0
+    | edgesight-ota:   |  43% Copying image to rootfs.0
+    | edgesight-ota:   |  44% Copying image to rootfs.0
+    | edgesight-ota:   |  44% Copying image to rootfs.0
+    | edgesight-ota:   |  44% Copying image to rootfs.0
+    | edgesight-ota:   |  44% Copying image to rootfs.0
+    | edgesight-ota:   |  45% Copying image to rootfs.0
+    | edgesight-ota:   |  45% Copying image to rootfs.0
+    | edgesight-ota:   |  45% Copying image to rootfs.0
+    | edgesight-ota:   |  45% Copying image to rootfs.0
+    | edgesight-ota:   |  46% Copying image to rootfs.0
+    | edgesight-ota:   |  46% Copying image to rootfs.0
+    | edgesight-ota:   |  46% Copying image to rootfs.0
+    | edgesight-ota:   |  47% Copying image to rootfs.0
+    | edgesight-ota:   |  47% Copying image to rootfs.0
+    | edgesight-ota:   |  47% Copying image to rootfs.0
+    | edgesight-ota:   |  47% Copying image to rootfs.0
+    | edgesight-ota:   |  48% Copying image to rootfs.0
+    | edgesight-ota:   |  48% Copying image to rootfs.0
+    | edgesight-ota:   |  48% Copying image to rootfs.0
+    | edgesight-ota:   |  48% Copying image to rootfs.0
+    | edgesight-ota:   |  49% Copying image to rootfs.0
+    | edgesight-ota:   |  49% Copying image to rootfs.0
+    | edgesight-ota:   |  49% Copying image to rootfs.0
+    | edgesight-ota:   |  50% Copying image to rootfs.0
+    | edgesight-ota:   |  50% Copying image to rootfs.0
+    | edgesight-ota:   |  50% Copying image to rootfs.0
+    | edgesight-ota:   |  50% Copying image to rootfs.0
+    | edgesight-ota:   |  70% Copying image to rootfs.0 failed.
+    | edgesight-ota:   | rauc-Message: 09:37:02.070: Updating slot rootfs.0 status
+    | edgesight-ota:   |  99% Updating slots failed.
+    | edgesight-ota:   | rauc-event-Message: 09:37:02.092: Installation d7ff5963 failed: Installation error: Failed updating slot rootfs.0: Failed to copy data: Error reading from file: Input/output error
+    | edgesight-ota:   | 100% Installing failed.
+    | edgesight-ota:   | 
+    | edgesight-ota:   | (rauc:128): rauc-WARNING **: 09:37:02.092: Installation error: Failed updating slot rootfs.0: Failed to copy data: Error reading from file: Input/output error
+    | edgesight-ota:   | Installation error: Failed updating slot rootfs.0: Failed to copy data: Error reading from file: Input/output error
+    | edgesight-ota:   | finished
+    | edgesight-ota:   | Installing `/data/ota/update.raucb` failed
+    | edgesight-ota: update available: 1.1.0 -> 6.6.6 (edgesight-6.6.6-rogue.raucb)
+    | edgesight-ota: REJECTED 6.6.6: Installing `/data/ota/update.raucb` failed
+    | edgesight-ota:   | rauc-Message: 09:37:17.500: Using central status file /data/rauc/central.raucs
+    | edgesight-ota:   | rauc-Message: 09:37:17.500: Using system config file /etc/rauc/system.conf
+    | edgesight-ota:   | rauc-Message: 09:37:17.501: Active slot bootname: 'B'
+    | edgesight-ota:   | started
+    | edgesight-ota:   |   0% Installing
+    | edgesight-ota:   | rauc-event-Message: 09:37:17.501: Installation a765e769 started
+    | edgesight-ota:   |   0% Determining slot states
+    | edgesight-ota:   |  10% Determining slot states done.
+    | edgesight-ota:   | Checking and mounting bundle...
+    | edgesight-ota:   |  10% Checking bundle
+    | edgesight-ota:   | rauc-Message: 09:37:17.501: Reading bundle: /data/ota/update.raucb
+    | edgesight-ota:   | rauc-Message: 09:37:17.502: Verifying bundle signature... 
+    | edgesight-ota:   |  10% Verifying signature
+    | edgesight-ota:   |  20% Verifying signature failed.
+    | edgesight-ota:   |  20% Checking bundle failed.
+    | edgesight-ota:   | rauc-event-Message: 09:37:17.504: Installation a765e769 failed: signature verification failed: Verify error: self-signed certificate
+    | edgesight-ota:   | 100% Installing failed.
+    | edgesight-ota:   | 
+    | edgesight-ota:   | (rauc:152): rauc-WARNING **: 09:37:17.504: signature verification failed: Verify error: self-signed certificate
+    | edgesight-ota:   | signature verification failed: Verify error: self-signed certificate
+    | edgesight-ota:   | finished
+    | edgesight-ota:   | Installing `/data/ota/update.raucb` failed
+    | edgesight-ota: update available: 1.1.0 -> 1.2.0 (edgesight-1.2.0.raucb)
+    | edgesight-ota: installed 1.2.0 into the inactive slot - rebooting into it
+    | [H[J[1;1HEdgeSight: booting slot A (ORDER=A B A_OK=1 A_TRY=1 B_OK=1 B_TRY=0)
+    | edgesight-health: slot A v1.2.0 FAILED health check after 45s -> mark-bad, reboot to fallback
+    | [H[J[1;1HEdgeSight: booting slot B (ORDER=A B A_OK=0 A_TRY=0 B_OK=1 B_TRY=1)
+    | edgesight-health: slot B v1.1.0 healthy, marked good (uptime 1.59s)
+    | edgesight-health: update 1.2.0 did not survive its first boot - rolled back to 1.1.0, blacklisted
+test-ota: all checks passed

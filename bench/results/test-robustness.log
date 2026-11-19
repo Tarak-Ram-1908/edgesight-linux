@@ -1,0 +1,30 @@
+== camera ingest ==
+  PASS  valid MJPEG stream (baseline)                    4.8s  healthy=True frames+69 dropped=0 decode_err=0
+  PASS  1 MiB of random bytes                            3.2s  healthy=True frames+28 dropped=0 decode_err=10
+  PASS  200 bit-flipped JPEGs                            4.0s  healthy=True frames+46 dropped=0 decode_err=14
+  PASS  200 truncated JPEGs (+EOI)                       2.5s  healthy=True frames+50 dropped=0 decode_err=15
+  PASS  JPEG claiming 60000x60000 px                     3.9s  healthy=True frames+25 dropped=0 decode_err=35
+  PASS  JPEG claiming 4096x4096 px (allowed size)        3.9s  healthy=True frames+30 dropped=0 decode_err=35
+  PASS  8 MiB frame without EOI (runaway)                3.5s  healthy=True frames+33 dropped=1 decode_err=35
+  PASS  empty frames (SOI EOI) x1000                     2.8s  healthy=True frames+25 dropped=1 decode_err=36
+  PASS  silent client for 6 s (must not starve)          8.6s  healthy=True frames+81 dropped=1 decode_err=36
+  PASS  trickle 1 byte / 0.5 s for 6 s                   7.6s  healthy=True frames+86 dropped=1 decode_err=36
+  PASS  valid stream again (recovery)                    4.7s  healthy=True frames+74 dropped=1 decode_err=36
+== HTTP server ==
+  PASS  random garbage x200                              2.8s  healthy=True frames+27 dropped=1 decode_err=36
+  PASS  16 KiB request line                              2.5s  healthy=True frames+24 dropped=1 decode_err=36
+  PASS  non-GET methods / path tricks                    2.5s  healthy=True frames+24 dropped=1 decode_err=36
+  PASS  flood: 300 concurrent /metrics                   7.7s  healthy=True frames+73 dropped=1 decode_err=36
+  PASS  slowloris: 40 half-open requests, 8 s           17.6s  healthy=True frames+182 dropped=1 decode_err=36
+  PASS  10 MJPEG viewers for 6 s                         8.8s  healthy=True frames+83 dropped=1 decode_err=36
+fuzz: 0 phase(s) failed
+  PASS  all fuzz phases survived
+  PASS  daemon never crashed or restarted
+  PASS  still the first daemon instance
+  PASS  service healthy at the end
+    |       1 [edgesightd    50.850] source: camera disconnected, falling back to samples
+    |       1 [edgesightd    48.751] source: camera connected
+    |       1 [edgesightd    46.248] source: camera disconnected, falling back to samples
+    |       1 [edgesightd    40.076] source: camera connected
+    |       1 [edgesightd    35.080] source: camera disconnected, falling back to samples
+test-robustness: all checks passed

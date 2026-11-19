@@ -1,0 +1,18 @@
+[1/4] building 1.1.0 (INT8 model)
+[2/4] building 1.2.0 (deliberately broken)
+[3/4] forging bundles
+rauc-Message: 09:35:42.702: No data directory or status file set, falling back to per-slot status.
+Consider setting 'data-directory=<path>' or 'statusfile=<path>/per-slot' explicitly.
+rauc-Message: 09:35:42.702: Using per-slot statusfile. System status information not supported!
+rauc-Message: 09:35:42.702: Using system config file /home/tarak/edgesight-work/bundles/host-rauc.conf
+rauc-Message: 09:35:42.702: Reading bundle: /home/tarak/edgesight-work/bundles/edgesight-1.1.0.raucb
+rauc-Message: 09:35:42.705: Verifying bundle signature... 
+rauc-Message: 09:35:42.707: Verified inline signature by 'O = EdgeSight, OU = Release Engineering, CN = EdgeSight Bundle Signing 2026'
+rauc-Message: 09:35:42.707: Verifying bundle payload... 
+rauc-Message: 09:35:43.801: No keyring given, skipping signature verification
+[4/4] rebuilding baseline 1.0.0
+-rw-r--r-- 1 tarak tarak 66127330 Nov 19 09:36 /home/tarak/edgesight-work/bundles/edgesight-1.0.0.raucb
+-rw-r--r-- 1 tarak tarak 66127329 Nov 19 09:34 /home/tarak/edgesight-work/bundles/edgesight-1.1.0.raucb
+-rw-r--r-- 1 tarak tarak 66127329 Nov 19 09:35 /home/tarak/edgesight-work/bundles/edgesight-1.1.1-tampered.raucb
+-rw-r--r-- 1 tarak tarak 66127329 Nov 19 09:35 /home/tarak/edgesight-work/bundles/edgesight-1.2.0.raucb
+-rw-r--r-- 1 tarak tarak 66127191 Nov 19 09:35 /home/tarak/edgesight-work/bundles/edgesight-6.6.6-rogue.raucb

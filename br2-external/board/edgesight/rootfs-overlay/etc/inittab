@@ -1,0 +1,8 @@
+# EdgeSight inittab (BusyBox init). No getty, no login: the appliance has no interactive shell.
+::sysinit:/etc/init.d/rcS
+::respawn:/usr/libexec/edgesight/run-edgesightd
+::respawn:/usr/libexec/edgesight/run-mosquitto
+::once:/usr/libexec/edgesight/health-check
+::respawn:/usr/libexec/edgesight/ota-agent
+::shutdown:/etc/init.d/rcK
+::restart:/sbin/init

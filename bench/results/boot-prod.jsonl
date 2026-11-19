@@ -1,0 +1,5 @@
+{"variant":"prod","launch_to_ready_s":5.840860747,"firmware_grub_s":4.360860747,"kernel_to_ready_s":1.480,"sys_mem_used_mib":196.262,"rss_mib":143.387,"model_load_ms":941.103,"engine":"onnxruntime-1.32.0"}
+{"variant":"prod","launch_to_ready_s":5.337800370,"firmware_grub_s":3.717800370,"kernel_to_ready_s":1.620,"sys_mem_used_mib":196.492,"rss_mib":142.848,"model_load_ms":843.785,"engine":"onnxruntime-1.32.0"}
+{"variant":"prod","launch_to_ready_s":3.710092941,"firmware_grub_s":2.250092941,"kernel_to_ready_s":1.460,"sys_mem_used_mib":195.625,"rss_mib":142.922,"model_load_ms":740.984,"engine":"onnxruntime-1.32.0"}
+{"variant":"prod","launch_to_ready_s":5.034227702,"firmware_grub_s":3.654227702,"kernel_to_ready_s":1.380,"sys_mem_used_mib":200.469,"rss_mib":143.035,"model_load_ms":766.805,"engine":"onnxruntime-1.32.0"}
+{"variant":"prod","launch_to_ready_s":5.536012998,"firmware_grub_s":4.036012998,"kernel_to_ready_s":1.500,"sys_mem_used_mib":194.785,"rss_mib":142.906,"model_load_ms":760.222,"engine":"onnxruntime-1.32.0"}

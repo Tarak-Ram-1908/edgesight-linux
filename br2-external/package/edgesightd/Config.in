@@ -1,0 +1,27 @@
+config BR2_PACKAGE_EDGESIGHTD
+	bool "edgesightd"
+	depends on BR2_INSTALL_LIBSTDCPP
+	depends on BR2_TOOLCHAIN_HAS_THREADS
+	select BR2_PACKAGE_JPEG
+	select BR2_PACKAGE_MOSQUITTO
+	select BR2_PACKAGE_LIBSECCOMP
+	help
+	  EdgeSight real-time object detection daemon: frame source
+	  (JPEG folder or MJPEG-over-TCP camera stream) -> ONNX Runtime
+	  or TensorFlow Lite inference -> MQTT + HTTP dashboard.
+	  Self-sandboxing: privilege drop, no_new_privs, Landlock and a
+	  seccomp-bpf syscall allow-list.
+
+if BR2_PACKAGE_EDGESIGHTD
+
+config BR2_PACKAGE_EDGESIGHTD_ORT
+	bool "ONNX Runtime backend"
+	default y
+	depends on BR2_PACKAGE_ONNXRUNTIME_BIN
+
+config BR2_PACKAGE_EDGESIGHTD_TFLITE
+	bool "TensorFlow Lite backend"
+	default y
+	depends on BR2_PACKAGE_TENSORFLOW_LITE
+
+endif

@@ -1,0 +1,23 @@
+EdgeSight model and sample-data notice
+======================================
+
+ssd_mobilenet_v1_fp32.onnx / ssd_mobilenet_v1_int8.onnx
+  Source : ONNX Model Zoo (github.com/onnx/models), commit c5cae0f1
+           validated/vision/object_detection_segmentation/ssd-mobilenetv1
+  Origin : TensorFlow Object Detection API "ssd_mobilenet_v1_coco"
+  Licence: Apache License 2.0
+
+ssd_mobilenet_v1_uint8.tflite
+  Source : coco_ssd_mobilenet_v1_1.0_quant_2018_06_29.zip
+           (storage.googleapis.com/download.tensorflow.org/models/tflite)
+  Licence: Apache License 2.0
+
+samples/*.jpg
+  Source : COCO 2017 validation set (cocodataset.org), images
+           000000039769 000000000139 000000000785 000000000872
+           000000397133 000000037777 000000252219 000000087038
+  Licence: COCO annotations are CC-BY 4.0; each image keeps its own
+           Flickr Creative Commons licence (recorded in the COCO
+           annotations "license" field, some are NonCommercial).
+           Used unmodified, for academic self-test/demo only; a product
+           build would replace them with owned test footage.

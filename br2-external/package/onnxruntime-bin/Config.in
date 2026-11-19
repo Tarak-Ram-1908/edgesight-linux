@@ -1,0 +1,20 @@
+config BR2_PACKAGE_ONNXRUNTIME_BIN
+	bool "onnxruntime-bin"
+	depends on BR2_x86_64
+	depends on BR2_TOOLCHAIN_USES_GLIBC
+	depends on BR2_INSTALL_LIBSTDCPP
+	help
+	  Microsoft ONNX Runtime (CPU execution provider), installed
+	  from the official, hash-pinned x86_64 release archive.
+
+	  The release binary uses runtime CPU dispatch (MLAS kernels
+	  for SSE4.2/AVX2/AVX-512/AVX-VNNI), so a single generic build
+	  is as fast as a -march specific one for the GEMM/conv hot
+	  paths. Building from source is possible but pulls ~30
+	  sub-projects through CMake FetchContent at build time, which
+	  breaks Buildroot's offline/hash-checked download model.
+
+	  https://onnxruntime.ai/
+
+comment "onnxruntime-bin needs an x86_64 glibc toolchain w/ C++"
+	depends on !BR2_x86_64 || !BR2_TOOLCHAIN_USES_GLIBC || !BR2_INSTALL_LIBSTDCPP

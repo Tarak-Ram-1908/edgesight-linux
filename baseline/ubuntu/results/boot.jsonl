@@ -1,0 +1,3 @@
+{"launch_to_app_ready_s":13.387000810,"kernel_to_app_ready_s":9.240,"systemd_analyze":"Startup finished in 3.004s (kernel) + 5.748s (userspace) = 8.752s "}
+{"launch_to_app_ready_s":13.797709589,"kernel_to_app_ready_s":11.260,"systemd_analyze":"Startup finished in 3.029s (kernel) + 7.815s (userspace) = 10.845s "}
+{"launch_to_app_ready_s":16.352925048,"kernel_to_app_ready_s":13.650,"systemd_analyze":"Startup finished in 3.026s (kernel) + 9.288s (userspace) = 12.314s "}

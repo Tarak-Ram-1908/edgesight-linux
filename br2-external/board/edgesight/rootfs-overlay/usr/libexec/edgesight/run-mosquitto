@@ -1,0 +1,4 @@
+#!/bin/sh
+# Local MQTT broker (drops to user 'mosquitto' itself, see mosquitto.conf)
+/usr/sbin/mosquitto -c /etc/mosquitto/mosquitto.conf
+sleep 2

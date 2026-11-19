@@ -1,0 +1,3 @@
+{"distro":"Ubuntu 24.04.5 LTS","kernel":"6.8.0-147-generic","sys_mem_used_mib":414.0,"sys_mem_total_mib":955.4,
+ "packages":668,"rootfs_used_bytes":2386059264,"kernel_bytes":15083912,"initrd_bytes":30707872,"modules":1011,"modules_bytes":29768205,
+ "processes":125,"running_services":19,"listening_sockets":8,"setuid_setgid_files":20,"edgesight_rss_kib":151120}

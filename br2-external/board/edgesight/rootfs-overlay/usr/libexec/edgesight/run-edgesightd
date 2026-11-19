@@ -1,0 +1,20 @@
+#!/bin/sh
+# Supervised by BusyBox init (respawn). Joins the cgroup, then starts the daemon,
+# which drops to the unprivileged 'edgesight' user and sandboxes itself.
+. /etc/edgesight/edgesight.conf
+# Maintenance hold (benchmarks on the dev image): pause the service without init respawn noise
+while [ -e /run/edgesight-hold ]; do sleep 1; done
+# ORT thread-pool spinning off: same FPS, -33 % CPU per frame (bench/results, "no-spin")
+export EDGESIGHT_ORT_SPIN="${ORT_SPIN:-0}"
+CG=/sys/fs/cgroup/edgesight
+[ -w "$CG/cgroup.procs" ] && echo $$ > "$CG/cgroup.procs"
+
+/usr/bin/edgesightd \
+    --runtime "$RUNTIME" --model "$MODEL" --threads "$THREADS" --score "$SCORE" \
+    --source "$SOURCE" --camera-port "$CAMERA_PORT" --fps "$FPS" --sample-hold "${SAMPLE_HOLD:-0}" \
+    --http-port "$HTTP_PORT" --mqtt "$MQTT_HOST:$MQTT_PORT" --topic "$MQTT_TOPIC" \
+    --selftest /usr/share/edgesight/samples/000000039769.jpg \
+    --user edgesight --sandbox "$SANDBOX" $EXTRA_ARGS
+rc=$?
+echo "edgesightd exited rc=$rc, restarting in 2s" >&2
+sleep 2

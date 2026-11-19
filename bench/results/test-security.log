@@ -1,0 +1,45 @@
+== A1. ELF hardening of prod userland ==
+  153 ELF objects: PIE/DSO 153  full-RELRO 149  NX 153  stack-canary 99  FORTIFY 104
+  PASS  every ELF object is NX
+  PASS  edgesightd is PIE + full RELRO
+== A2. setuid/setgid files in the prod squashfs ==
+  setuid/setgid files: 0
+  PASS  no setuid/setgid binaries
+  PASS  no world-writable files
+== A3. kernel-hardening-checker ==
+  [edgesight] CONFIG_X86_USER_SHADOW_STACK          |kconfig| harden_userspace |   kspp   |     y      | FAIL: "is not set"
+  [edgesight] 
+  [edgesight] [+] Check is finished: 'OK' - 203 / 'FAIL' - 57
+  [ubuntu] CONFIG_X86_USER_SHADOW_STACK          |kconfig| harden_userspace |   kspp   |     y      | OK
+  [ubuntu] 
+  [ubuntu] [+] Check is finished: 'OK' - 127 / 'FAIL' - 133
+== B. runtime confinement (dev image) ==
+  PASS  service runs as unprivileged uid
+  PASS  no_new_privs set
+  PASS  seccomp filter mode (2)
+  PASS  effective capabilities empty
+  PASS  cgroup v2 memory limit applied
+  PASS  root fs is dm-verity squashfs
+  PASS  root fs cannot be remounted rw
+  PASS  /data is noexec
+  PASS  kernel modules impossible
+  PASS  kernel lockdown active (confidentiality)
+  PASS  LSM stack: lockdown,landlock,yama
+  PASS  service cannot reach off-box (egress drop)
+  PASS  sysctl kptr_restrict=2
+  PASS  firewall default-drop loaded
+  sandbox escape probes (as the service would run):
+    [edgesightd     4.562] EdgeSight 1.0.0 starting (slot A, runtime ort, 2 threads, sandbox strict)
+    [edgesightd     4.562] sandbox: running as edgesight (uid=101 gid=102), all capabilities dropped
+    [edgesightd     4.562] sandbox: landlock ABI v6 active - filesystem read-only, exec denied
+    [edgesightd     5.271] sandbox: seccomp-bpf strict, 113 syscalls allowed (default: kill process)
+      sandbox probe write a file under /data     BLOCKED (permission denied - privileges/landlock)
+      sandbox probe modify /etc/passwd           BLOCKED (permission denied - privileges/landlock)
+      sandbox probe execve /bin/sh               BLOCKED (killed by signal 31 - seccomp)
+      sandbox probe open raw packet socket       BLOCKED (killed by signal 31 - seccomp)
+      sandbox probe ptrace a process             BLOCKED (killed by signal 31 - seccomp)
+      sandbox probe mount a filesystem           BLOCKED (killed by signal 31 - seccomp)
+      sandbox probe regain root (setuid 0)       BLOCKED (killed by signal 31 - seccomp)
+      sandbox self-test: 7/7 forbidden operations blocked
+  PASS  all sandbox probes blocked
+test-security: all checks passed

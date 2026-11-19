@@ -1,0 +1,15 @@
+# EdgeSight Linux - developer variant (applied ON TOP of edgesight_prod_defconfig by build.sh)
+# Adds a root shell on the serial console, SSH, debugging tools and Python, so the
+# size/attack-surface cost of "convenience" can be measured against the prod image.
+BR2_TARGET_GENERIC_ISSUE="EdgeSight Linux (DEV build - not for deployment)"
+BR2_TARGET_ENABLE_ROOT_LOGIN=y
+BR2_TARGET_GENERIC_GETTY=y
+BR2_TARGET_GENERIC_GETTY_PORT="ttyS0"
+BR2_ROOTFS_OVERLAY="$(BR2_EXTERNAL_EDGESIGHT_PATH)/board/edgesight/rootfs-overlay $(BR2_EXTERNAL_EDGESIGHT_PATH)/board/edgesight/rootfs-overlay-dev"
+BR2_ROOTFS_POST_SCRIPT_ARGS="dev"
+BR2_LINUX_KERNEL_CONFIG_FRAGMENT_FILES="$(BR2_EXTERNAL_EDGESIGHT_PATH)/board/edgesight/linux/base.cfg $(BR2_EXTERNAL_EDGESIGHT_PATH)/board/edgesight/linux/virtio.cfg $(BR2_EXTERNAL_EDGESIGHT_PATH)/board/edgesight/linux/fs.cfg $(BR2_EXTERNAL_EDGESIGHT_PATH)/board/edgesight/linux/net.cfg $(BR2_EXTERNAL_EDGESIGHT_PATH)/board/edgesight/linux/security.cfg $(BR2_EXTERNAL_EDGESIGHT_PATH)/board/edgesight/linux/ml.cfg $(BR2_EXTERNAL_EDGESIGHT_PATH)/board/edgesight/linux/boot.cfg $(BR2_EXTERNAL_EDGESIGHT_PATH)/board/edgesight/linux/dev.cfg"
+BR2_PACKAGE_DROPBEAR=y
+BR2_PACKAGE_STRACE=y
+BR2_PACKAGE_HTOP=y
+BR2_PACKAGE_PYTHON3=y
+BR2_PACKAGE_E2FSPROGS=y

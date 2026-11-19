@@ -1,0 +1,137 @@
+[+] Special report mode: show_ok
+[+] Kconfig file to check: /mnt/c/Alahari/IIIT/Sem 5/2- Operating Systems/Assignment/edgesight/baseline/ubuntu/results/ubuntu-kernel.config
+[+] Detected kernel version: (6, 8, 12)
+[+] Detected architecture: X86_64
+[+] Detected compiler: GCC 130300
+=======================================================================================================================
+             option_name              | type  |      reason      | decision |  expected  | check_result
+=======================================================================================================================
+CONFIG_BUG                            |kconfig| self_protection  |defconfig |     y      | OK
+CONFIG_SLUB_DEBUG                     |kconfig| self_protection  |defconfig |     y      | OK
+CONFIG_THREAD_INFO_IN_TASK            |kconfig| self_protection  |defconfig |     y      | OK
+CONFIG_IOMMU_DEFAULT_PASSTHROUGH      |kconfig| self_protection  |defconfig | is not set | OK
+CONFIG_IOMMU_SUPPORT                  |kconfig| self_protection  |defconfig |     y      | OK
+CONFIG_STACKPROTECTOR                 |kconfig| self_protection  |defconfig |     y      | OK
+CONFIG_STACKPROTECTOR_STRONG          |kconfig| self_protection  |defconfig |     y      | OK
+CONFIG_STRICT_KERNEL_RWX              |kconfig| self_protection  |defconfig |     y      | OK
+CONFIG_STRICT_MODULE_RWX              |kconfig| self_protection  |defconfig |     y      | OK
+CONFIG_REFCOUNT_FULL                  |kconfig| self_protection  |defconfig |     y      | OK: version >= (5, 4, 208)
+CONFIG_INIT_STACK_ALL_ZERO            |kconfig| self_protection  |defconfig |     y      | OK
+CONFIG_CPU_MITIGATIONS                |kconfig| self_protection  |defconfig |     y      | OK
+CONFIG_RANDOMIZE_BASE                 |kconfig| self_protection  |defconfig |     y      | OK
+CONFIG_VMAP_STACK                     |kconfig| self_protection  |defconfig |     y      | OK
+CONFIG_DEBUG_WX                       |kconfig| self_protection  |defconfig |     y      | OK
+CONFIG_X86_MCE                        |kconfig| self_protection  |defconfig |     y      | OK
+CONFIG_MICROCODE                      |kconfig| self_protection  |defconfig |     y      | OK
+CONFIG_MICROCODE_INTEL                |kconfig| self_protection  |defconfig |     y      | OK: CONFIG_MICROCODE is "y"
+CONFIG_MICROCODE_AMD                  |kconfig| self_protection  |defconfig |     y      | OK: CONFIG_MICROCODE is "y"
+CONFIG_X86_SMAP                       |kconfig| self_protection  |defconfig |     y      | OK: version >= (5, 19, 0)
+CONFIG_X86_UMIP                       |kconfig| self_protection  |defconfig |     y      | OK
+CONFIG_X86_MCE_INTEL                  |kconfig| self_protection  |defconfig |     y      | OK
+CONFIG_X86_MCE_AMD                    |kconfig| self_protection  |defconfig |     y      | OK
+CONFIG_MITIGATION_RETPOLINE           |kconfig| self_protection  |defconfig |     y      | OK
+CONFIG_MITIGATION_RFDS                |kconfig| self_protection  |defconfig |     y      | OK
+CONFIG_MITIGATION_SPECTRE_BHI         |kconfig| self_protection  |defconfig |     y      | OK
+CONFIG_MITIGATION_TSA                 |kconfig| self_protection  |defconfig |     y      | OK
+CONFIG_MITIGATION_VMSCAPE             |kconfig| self_protection  |defconfig |     y      | OK
+CONFIG_RANDOMIZE_MEMORY               |kconfig| self_protection  |defconfig |     y      | OK
+CONFIG_MITIGATION_RETHUNK             |kconfig| self_protection  |defconfig |     y      | OK
+CONFIG_MITIGATION_PAGE_TABLE_ISOLATION|kconfig| self_protection  |defconfig |     y      | OK: CONFIG_PAGE_TABLE_ISOLATION is "y"
+CONFIG_MITIGATION_SRSO                |kconfig| self_protection  |defconfig |     y      | OK: CONFIG_CPU_SRSO is "y"
+CONFIG_MITIGATION_ITS                 |kconfig| self_protection  |defconfig |     y      | OK
+CONFIG_INTEL_IOMMU                    |kconfig| self_protection  |defconfig |     y      | OK
+CONFIG_AMD_IOMMU                      |kconfig| self_protection  |defconfig |     y      | OK
+CONFIG_RANDOM_KMALLOC_CACHES          |kconfig| self_protection  |   kspp   |     y      | OK
+CONFIG_SLAB_FREELIST_HARDENED         |kconfig| self_protection  |   kspp   |     y      | OK
+CONFIG_SLAB_FREELIST_RANDOM           |kconfig| self_protection  |   kspp   |     y      | OK
+CONFIG_SHUFFLE_PAGE_ALLOCATOR         |kconfig| self_protection  |   kspp   |     y      | OK
+CONFIG_FORTIFY_SOURCE                 |kconfig| self_protection  |   kspp   |     y      | OK
+CONFIG_INIT_ON_ALLOC_DEFAULT_ON       |kconfig| self_protection  |   kspp   |     y      | OK
+CONFIG_SECURITY_LOCKDOWN_LSM          |kconfig| self_protection  |   kspp   |     y      | OK
+CONFIG_LSM                            |kconfig| self_protection  |   kspp   | *lockdown* | OK: in "landlock,lockdown,yama,integrity,apparmor"
+CONFIG_SECURITY_LOCKDOWN_LSM_EARLY    |kconfig| self_protection  |   kspp   |     y      | OK
+CONFIG_ZERO_CALL_USED_REGS            |kconfig| self_protection  |   kspp   |     y      | OK
+CONFIG_DEBUG_CREDENTIALS              |kconfig| self_protection  |   kspp   |     y      | OK: version >= (6, 6, 8)
+CONFIG_KFENCE                         |kconfig| self_protection  |   kspp   |     y      | OK
+CONFIG_HARDENED_USERCOPY              |kconfig| self_protection  |   kspp   |     y      | OK
+CONFIG_HARDENED_USERCOPY_FALLBACK     |kconfig| self_protection  |   kspp   | is not set | OK: is not found
+CONFIG_HARDENED_USERCOPY_PAGESPAN     |kconfig| self_protection  |   kspp   | is not set | OK: is not found
+CONFIG_MODULE_SIG                     |kconfig| self_protection  |   kspp   |     y      | OK
+CONFIG_MODULE_SIG_ALL                 |kconfig| self_protection  |   kspp   |     y      | OK
+CONFIG_MODULE_SIG_SHA512              |kconfig| self_protection  |   kspp   |     y      | OK
+CONFIG_RESET_ATTACK_MITIGATION        |kconfig| self_protection  |   kspp   |     y      | OK
+CONFIG_UBSAN_BOUNDS                   |kconfig| self_protection  |   kspp   |     y      | OK
+CONFIG_UBSAN_LOCAL_BOUNDS             |kconfig| self_protection  |   kspp   |     y      | OK: CONFIG_UBSAN_BOUNDS is "y"
+CONFIG_SCHED_STACK_END_CHECK          |kconfig| self_protection  |   kspp   |     y      | OK
+CONFIG_SCHED_CORE                     |kconfig| self_protection  |   kspp   |     y      | OK
+CONFIG_RANDOMIZE_KSTACK_OFFSET_DEFAULT|kconfig| self_protection  |   kspp   |     y      | OK
+CONFIG_DEFAULT_MMAP_MIN_ADDR          |kconfig| self_protection  |   kspp   |   65536    | OK
+CONFIG_HW_RANDOM_TPM                  |kconfig| self_protection  |   kspp   |     y      | OK
+CONFIG_INTEL_IOMMU_DEFAULT_ON         |kconfig| self_protection  |   kspp   |     y      | OK
+CONFIG_MITIGATION_SLS                 |kconfig| self_protection  |   kspp   |     y      | OK: CONFIG_SLS is "y"
+CONFIG_INTEL_IOMMU_SVM                |kconfig| self_protection  |   kspp   |     y      | OK
+CONFIG_AMD_IOMMU_V2                   |kconfig| self_protection  |   kspp   |     y      | OK: version >= (6, 7, 0)
+CONFIG_SECURITY                       |kconfig| security_policy  |defconfig |     y      | OK
+CONFIG_SECURITY_YAMA                  |kconfig| security_policy  |   kspp   |     y      | OK
+CONFIG_LSM                            |kconfig| security_policy  |   kspp   |   *yama*   | OK: in "landlock,lockdown,yama,integrity,apparmor"
+CONFIG_SECURITY_LANDLOCK              |kconfig| security_policy  |   kspp   |     y      | OK
+CONFIG_LSM                            |kconfig| security_policy  |   kspp   | *landlock* | OK: in "landlock,lockdown,yama,integrity,apparmor"
+CONFIG_SECURITY_SELINUX_DISABLE       |kconfig| security_policy  |   kspp   | is not set | OK: is not found
+CONFIG_SECURITY_WRITABLE_HOOKS        |kconfig| security_policy  |   kspp   | is not set | OK: is not found
+CONFIG_SECURITY_SELINUX_DEBUG         |kconfig| security_policy  |   kspp   | is not set | OK
+CONFIG_SECURITY_SELINUX               |kconfig| security_policy  |a13xp0p0v |     y      | OK
+CONFIG_LSM                            |kconfig| security_policy  |a13xp0p0v | *selinux*  | OK: "apparmor" is in CONFIG_LSM
+CONFIG_SECCOMP                        |kconfig|cut_attack_surface|defconfig |     y      | OK
+CONFIG_SECCOMP_FILTER                 |kconfig|cut_attack_surface|defconfig |     y      | OK
+CONFIG_BPF_UNPRIV_DEFAULT_OFF         |kconfig|cut_attack_surface|defconfig |     y      | OK
+CONFIG_STRICT_DEVMEM                  |kconfig|cut_attack_surface|defconfig |     y      | OK
+CONFIG_X86_INTEL_TSX_MODE_OFF         |kconfig|cut_attack_surface|defconfig |     y      | OK
+CONFIG_SECURITY_DMESG_RESTRICT        |kconfig|cut_attack_surface|   kspp   |     y      | OK
+CONFIG_ACPI_CUSTOM_METHOD             |kconfig|cut_attack_surface|   kspp   | is not set | OK
+CONFIG_COMPAT_BRK                     |kconfig|cut_attack_surface|   kspp   | is not set | OK
+CONFIG_DEVKMEM                        |kconfig|cut_attack_surface|   kspp   | is not set | OK: is not found
+CONFIG_X86_X32                        |kconfig|cut_attack_surface|   kspp   | is not set | OK: is not found
+CONFIG_X86_X32_ABI                    |kconfig|cut_attack_surface|   kspp   | is not set | OK
+CONFIG_OABI_COMPAT                    |kconfig|cut_attack_surface|   kspp   | is not set | OK: is not found
+CONFIG_LEGACY_TIOCSTI                 |kconfig|cut_attack_surface|   kspp   | is not set | OK
+CONFIG_MODULE_FORCE_LOAD              |kconfig|cut_attack_surface|   kspp   | is not set | OK
+CONFIG_M486                           |kconfig|cut_attack_surface|   kspp   | is not set | OK: is not found
+CONFIG_COMPAT_VDSO                    |kconfig|cut_attack_surface|   kspp   | is not set | OK
+CONFIG_DRM_LEGACY                     |kconfig|cut_attack_surface|maintainer| is not set | OK: is not found
+CONFIG_BLK_DEV_FD_RAWCMD              |kconfig|cut_attack_surface|maintainer| is not set | OK
+CONFIG_NOUVEAU_LEGACY_CTX_SUPPORT     |kconfig|cut_attack_surface|maintainer| is not set | OK: is not found
+CONFIG_CRYPTO_USER_API_ENABLE_OBSOLETE|kconfig|cut_attack_surface|maintainer| is not set | OK
+CONFIG_CRYPTO_USER_API_RNG_CAVP       |kconfig|cut_attack_surface|maintainer| is not set | OK
+CONFIG_ZSMALLOC_STAT                  |kconfig|cut_attack_surface|  grsec   | is not set | OK
+CONFIG_DEBUG_KMEMLEAK                 |kconfig|cut_attack_surface|  grsec   | is not set | OK
+CONFIG_BINFMT_AOUT                    |kconfig|cut_attack_surface|  grsec   | is not set | OK: is not found
+CONFIG_FAIL_FUTEX                     |kconfig|cut_attack_surface|  grsec   | is not set | OK: is not found
+CONFIG_EDAC_DEBUG                     |kconfig|cut_attack_surface|  grsec   | is not set | OK
+CONFIG_DRM_I915_DEBUG                 |kconfig|cut_attack_surface|  grsec   | is not set | OK
+CONFIG_DVB_C8SECTPFE                  |kconfig|cut_attack_surface|  grsec   | is not set | OK: is not found
+CONFIG_KCOV                           |kconfig|cut_attack_surface|  grsec   | is not set | OK
+CONFIG_PROVIDE_OHCI1394_DMA_INIT      |kconfig|cut_attack_surface|  grsec   | is not set | OK
+CONFIG_XFS_ONLINE_SCRUB_STATS         |kconfig|cut_attack_surface|  grsec   | is not set | OK: is not found
+CONFIG_PREEMPTIRQ_TRACEPOINTS         |kconfig|cut_attack_surface|  grsec   | is not set | OK: is not found
+CONFIG_ENABLE_DEFAULT_TRACERS         |kconfig|cut_attack_surface|  grsec   | is not set | OK: is not found
+CONFIG_PROVE_LOCKING                  |kconfig|cut_attack_surface|  grsec   | is not set | OK
+CONFIG_TEST_DEBUG_VIRTUAL             |kconfig|cut_attack_surface|  grsec   | is not set | OK: is not found
+CONFIG_PTDUMP_DEBUGFS                 |kconfig|cut_attack_surface|  grsec   | is not set | OK
+CONFIG_X86_PTDUMP                     |kconfig|cut_attack_surface|  grsec   | is not set | OK: is not found
+CONFIG_DEBUG_CLOSURES                 |kconfig|cut_attack_surface|  grsec   | is not set | OK
+CONFIG_BCACHE_CLOSURES_DEBUG          |kconfig|cut_attack_surface|  grsec   | is not set | OK: is not found
+CONFIG_BPF_JIT_ALWAYS_ON              |kconfig|cut_attack_surface|  clipos  |     y      | OK
+CONFIG_MMIOTRACE_TEST                 |kconfig|cut_attack_surface| lockdown | is not set | OK
+CONFIG_CORESIGHT                      |kconfig|cut_attack_surface|a13xp0p0v | is not set | OK: is not found
+CONFIG_FAULT_INJECTION                |kconfig|cut_attack_surface|a13xp0p0v | is not set | OK
+CONFIG_ARM_PTDUMP_DEBUGFS             |kconfig|cut_attack_surface|a13xp0p0v | is not set | OK: is not found
+CONFIG_ARM_PTDUMP                     |kconfig|cut_attack_surface|a13xp0p0v | is not set | OK: is not found
+CONFIG_SECCOMP_CACHE_DEBUG            |kconfig|cut_attack_surface|a13xp0p0v | is not set | OK
+CONFIG_CRASH_DM_CRYPT                 |kconfig|cut_attack_surface|a13xp0p0v | is not set | OK: is not found
+CONFIG_LKDTM                          |kconfig|cut_attack_surface|a13xp0p0v | is not set | OK
+CONFIG_SYN_COOKIES                    |kconfig| network_security |defconfig |     y      | OK
+CONFIG_ARCH_MMAP_RND_BITS             |kconfig| harden_userspace |a13xp0p0v |     32     | OK
+CONFIG_ARCH_MMAP_RND_COMPAT_BITS      |kconfig| harden_userspace |a13xp0p0v |     16     | OK
+CONFIG_X86_USER_SHADOW_STACK          |kconfig| harden_userspace |   kspp   |     y      | OK
+
+[+] Check is finished: 'OK' - 127 / 'FAIL' - 133 (suppressed in output)

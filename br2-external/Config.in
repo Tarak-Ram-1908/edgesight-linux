@@ -1,0 +1,5 @@
+menu "EdgeSight packages"
+source "$BR2_EXTERNAL_EDGESIGHT_PATH/package/onnxruntime-bin/Config.in"
+source "$BR2_EXTERNAL_EDGESIGHT_PATH/package/edgesight-models/Config.in"
+source "$BR2_EXTERNAL_EDGESIGHT_PATH/package/edgesightd/Config.in"
+endmenu

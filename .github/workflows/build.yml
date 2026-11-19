@@ -1,0 +1,57 @@
+# EdgeSight CI: reproducible image build + boot acceptance test in QEMU.
+# GitHub-hosted Ubuntu runners expose /dev/kvm, so the same scripts used on the
+# laptop run unchanged. Download and ccache directories are cached between runs.
+name: build-and-boot
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  image:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 240
+    env:
+      EDGESIGHT_WORK: ${{ github.workspace }}/work
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Host packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential cpio unzip rsync bc file wget cmake ninja-build \
+            pkg-config libncurses-dev libssl-dev python3-venv qemu-system-x86 qemu-utils ovmf \
+            squashfs-tools cryptsetup-bin dosfstools mtools mosquitto-clients jq
+          sudo chmod 666 /dev/kvm
+
+      - name: Cache downloads and ccache
+        uses: actions/cache@v4
+        with:
+          path: |
+            work/dl
+            work/ccache
+          key: br-${{ hashFiles('br2-external/configs/*', 'br2-external/package/**/*.hash') }}
+          restore-keys: br-
+
+      - name: Build prod image
+        run: ./build.sh prod
+
+      - name: Kernel config check
+        run: scripts/check-kernel-config.sh prod
+
+      - name: Boot acceptance test
+        run: tests/test-boot.sh prod 1
+
+      - name: dm-verity tamper test
+        run: tests/test-tamper.sh
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: edgesight-prod
+          path: |
+            out/prod/
+            work/output-prod/images/disk.img
+            work/output-prod/images/*.raucb
+          retention-days: 14

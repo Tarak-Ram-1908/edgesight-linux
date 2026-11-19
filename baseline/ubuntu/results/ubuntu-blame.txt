@@ -1,0 +1,25 @@
+2.424s cloud-init-local.service
+1.859s systemd-networkd-wait-online.service
+1.721s apparmor.service
+1.409s cloud-config.service
+1.396s systemd-resolved.service
+1.367s snapd.seeded.service
+1.237s snapd.service
+1.054s dev-vda1.device
+ 854ms apport.service
+ 823ms polkit.service
+ 746ms systemd-timesyncd.service
+ 671ms rsyslog.service
+ 653ms grub-common.service
+ 621ms cloud-final.service
+ 584ms udisks2.service
+ 556ms systemd-update-utmp.service
+ 535ms cloud-init.service
+ 507ms systemd-binfmt.service
+ 449ms dbus.service
+ 422ms e2scrub_reap.service
+ 331ms ModemManager.service
+ 274ms sysstat.service
+ 236ms proc-sys-fs-binfmt_misc.mount
+ 232ms dev-hugepages.mount
+ 229ms systemd-udev-trigger.service

@@ -1,0 +1,4 @@
+# Locally computed (sha256sum) from the GitHub release asset
+sha256  bb169b7e374731730d2ae406fb39de7be4b315f413a9132efe896261c31bb503  onnxruntime-linux-x64-1.32.0.tgz
+sha256  2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c  LICENSE
+sha256  d8696258afcf9df7827a5e01d6b6d55ee9b461b4e82020f5f48242deb9cc2270  ThirdPartyNotices.txt

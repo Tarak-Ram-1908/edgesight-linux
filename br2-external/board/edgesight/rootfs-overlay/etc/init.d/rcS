@@ -1,0 +1,49 @@
+#!/bin/sh
+# EdgeSight early userspace. Runs once (sysinit) before any service is started.
+# Root is a read-only, dm-verity protected squashfs: everything writable is set up here.
+PATH=/usr/sbin:/usr/bin:/sbin:/bin
+export PATH
+mark() { echo "edgesight-init: $*" > /dev/kmsg; }
+
+mount -t proc  proc  /proc -o nosuid,nodev,noexec,hidepid=invisible
+mount -t sysfs sysfs /sys  -o nosuid,nodev,noexec
+mount -t tmpfs run   /run  -o nosuid,nodev,mode=0755,size=16m
+mount -t tmpfs tmp   /tmp  -o nosuid,nodev,noexec,mode=1777,size=64m
+mkdir -p /dev/pts /dev/shm
+mount -t devpts devpts /dev/pts -o nosuid,noexec,gid=5,mode=0620
+mount -t tmpfs  shm    /dev/shm -o nosuid,nodev,noexec,size=16m
+mount -t cgroup2 cgroup2 /sys/fs/cgroup -o nosuid,nodev,noexec
+mkdir -p /run/dropbear     # dev image: /etc/dropbear -> /run/dropbear (host keys made on demand)
+mark "pseudo filesystems up"
+
+# Persistent state partition (never executable)
+if ! mount -t ext4 -o nosuid,nodev,noexec,noatime /dev/vda6 /data; then
+    mark "WARNING: /data unavailable, using volatile tmpfs"
+    mount -t tmpfs data /data -o nosuid,nodev,noexec,size=32m
+fi
+mkdir -p /data/overlay/etc/upper /data/overlay/etc/work /data/rauc /data/ota /data/log
+# Writable /etc as an overlay over the verified read-only /etc
+mount -t overlay overlay /etc \
+    -o lowerdir=/etc,upperdir=/data/overlay/etc/upper,workdir=/data/overlay/etc/work,nosuid,nodev
+# EFI system partition: GRUB boot-selection environment written by RAUC
+mount -t vfat /dev/vda1 /boot/efi -o nosuid,nodev,noexec,umask=0077,flush
+mark "storage up"
+
+sysctl -q -p /etc/sysctl.conf >/dev/null 2>&1
+hostname -F /etc/hostname
+
+ip link set lo up
+ip link set eth0 up 2>/dev/null && udhcpc -i eth0 -b -q -t 5 -T 1 -s /usr/share/udhcpc/default.script >/dev/null 2>&1 &
+nft -f /etc/nftables.conf && mark "firewall loaded"
+
+# cgroup v2 sandbox for the inference service
+. /etc/edgesight/edgesight.conf
+echo "+cpu +memory +pids +cpuset" > /sys/fs/cgroup/cgroup.subtree_control 2>/dev/null
+CG=/sys/fs/cgroup/edgesight
+mkdir -p "$CG"
+echo "${CG_CPU_MAX:-max 100000}" > "$CG/cpu.max"     2>/dev/null
+echo "${CG_MEM_MAX:-512M}"       > "$CG/memory.max"  2>/dev/null
+echo "${CG_PIDS_MAX:-64}"        > "$CG/pids.max"    2>/dev/null
+[ -n "$CG_CPUSET" ] && echo "$CG_CPUSET" > "$CG/cpuset.cpus" 2>/dev/null
+
+mark "rcS done"

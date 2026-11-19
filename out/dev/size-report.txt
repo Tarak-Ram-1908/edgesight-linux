@@ -1,0 +1,9 @@
+variant=dev version=1.0.0
+bzImage_bytes=4232192
+rootfs_squashfs_bytes=71868416
+rootfs_verity_bytes=72445952
+disk_img_bytes=537939968
+disk_img_allocated_bytes=158773248
+disk_img_zstd_bytes=152859882
+bundle_bytes=77141472
+root_hash=99c9d3b0332d207413575cdd6315a10d200bb8b1c903b8091c5f63bd18ab8476

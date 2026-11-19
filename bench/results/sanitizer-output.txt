@@ -1,0 +1,10 @@
+  bench under ASan: tflite+xnnpack, 60 frames OK
+  bench under ASan: tflite, 60 frames OK
+  bench under ASan: onnxruntime-1.32.0, 60 frames OK
+edgesightd
+libasan.so.8
+libubsan.so.1
+stderr.log
+[edgesightd    57.525] source: camera disconnected, falling back to samples
+[edgesightd    96.308] shutting down after 2599 frames
+[edgesightd    96.310] mqtt: disconnected, will retry

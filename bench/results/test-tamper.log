@@ -1,0 +1,14 @@
+corrupting 16 bytes of rootA (partition 4) at byte offset 34603072 (squashfs superblock)
+  PASS  dm-verity detects the modified block
+  PASS  kernel refuses to continue (panic)
+  PASS  GRUB falls back to slot B
+  PASS  service comes up from slot B
+  PASS  slot B confirmed by health check
+    | [H[J[1;1HEdgeSight: booting slot A (ORDER=A B A_OK=1 A_TRY=1 B_OK=1 B_TRY=0)
+    | [    0.351637] device-mapper: verity: 254:4: data block 0 is corrupted
+    | [    0.352447] Kernel panic - not syncing: dm-verity device corrupted
+    | [    0.354138] Workqueue: kverityd 0xffffffffaefd3300
+    | [H[J[1;1HEdgeSight: booting slot B (ORDER=A B A_OK=1 A_TRY=1 B_OK=1 B_TRY=1)
+    | EDGESIGHT_READY uptime=1.410 engine=onnxruntime-1.32.0 load_ms=746
+    | edgesight-health: slot B v1.0.0 healthy, marked good (uptime 1.60s)
+test-tamper: all checks passed

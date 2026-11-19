@@ -1,0 +1,14 @@
+{"system":"edgesight","round":1,"launch_to_ready_s":3.880097433,"kernel_to_ready_s":1.650,"sys_mem_used_mib":195.504}
+{"system":"ubuntu","round":1,"launch_to_ready_s":18.705323929,"kernel_to_ready_s":14.860,"sys_mem_used_mib":398.9}
+{"system":"edgesight","round":2,"launch_to_ready_s":4.986532845,"kernel_to_ready_s":2.880,"sys_mem_used_mib":194.523}
+{"system":"ubuntu","round":2,"launch_to_ready_s":18.695692151,"kernel_to_ready_s":14.960,"sys_mem_used_mib":399.5}
+{"system":"edgesight","round":3,"launch_to_ready_s":5.045906283,"kernel_to_ready_s":2.960,"sys_mem_used_mib":191.352}
+{"system":"ubuntu","round":3,"launch_to_ready_s":19.329781020,"kernel_to_ready_s":15.740,"sys_mem_used_mib":412.0}
+{"system":"edgesight","round":4,"launch_to_ready_s":5.099944001,"kernel_to_ready_s":2.920,"sys_mem_used_mib":198.926}
+{"system":"ubuntu","round":4,"launch_to_ready_s":18.231083208,"kernel_to_ready_s":14.480,"sys_mem_used_mib":398.0}
+{"system":"edgesight","round":5,"launch_to_ready_s":5.337573659,"kernel_to_ready_s":3.090,"sys_mem_used_mib":197.430}
+{"system":"ubuntu","round":5,"launch_to_ready_s":17.495702887,"kernel_to_ready_s":13.980,"sys_mem_used_mib":406.9}
+{"system":"edgesight","round":6,"launch_to_ready_s":5.400976486,"kernel_to_ready_s":3.180,"sys_mem_used_mib":193.039}
+{"system":"ubuntu","round":6,"launch_to_ready_s":18.140597970,"kernel_to_ready_s":14.770,"sys_mem_used_mib":398.9}
+{"system":"edgesight","round":7,"launch_to_ready_s":3.791502493,"kernel_to_ready_s":1.620,"sys_mem_used_mib":198.453}
+{"system":"ubuntu","round":7,"launch_to_ready_s":20.124828241,"kernel_to_ready_s":16.240,"sys_mem_used_mib":401.3}

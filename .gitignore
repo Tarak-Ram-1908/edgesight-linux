@@ -1,0 +1,9 @@
+# build outputs live in WSL ($EDGESIGHT_WORK); only the small deliverables in out/ are versioned
+/keys/*.key.pem
+/keys/*.srl
+/keys/ssh_ed25519
+/baseline/ubuntu/work/
+/bench/results/raw/
+__pycache__/
+*.pyc
+.venv/
